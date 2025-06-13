@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Consumption</title>
+    <script>
+        function fetchData() {
+            fetch('/data')
+                .then(response => response.json())
+                .then(data => {
+                    let table = "<table border='1'><tr><th>Time</th><th>Power (W)</th></tr>";
+                    data.forEach(entry => {
+                        table += `<tr><td>${entry.time}</td><td>${entry.power} W</td></tr>`;
+                    });
+                    table += "</table>";
+                    document.getElementById("data").innerHTML = table;
+                });
+        }
+    </script>
+</head>
+<body onload="fetchData()">
+    <h1>Energy Consumption Data</h1>
+    <div id="data">Loading...</div>
+</body>
+</html>
